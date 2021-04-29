@@ -1,0 +1,38 @@
+﻿@page "/newpage"
+
+<h1>BlazorWebAssembly 完全に理解した。</h1>
+
+Welcome to Blazor WebAssembly.
+
+<table class="table">
+    <tr>
+        <th>最初</th>
+        <th><input @bind="Val1" /></th>
+    </tr>
+    <tr>
+        <th>2番目</th>
+        <th><input @bind="Val2" /></th>
+    </tr>
+    <tr>
+        <th>3番目</th>
+        <th><input @bind="Val3" /></th>
+    </tr>
+    <tr>
+        <th>Total:</th>
+        <th>@Total</th>
+    </tr>
+</table>
+
+<button class="btn btn-primary" @onclick="Calculate">Calculate</button>
+
+@code {
+    private double Val1 { get; set; } = 5000;
+    private double Val2 { get; set; } = 5;
+    private double Val3 { get; set; } = 10;
+    private double total { get; set; } = 0;
+    private string Total { get; set; }
+    private void Calculate() {
+        var total = Val1 + Val2 + Val3;
+        Total = total.ToString();
+    }
+}
