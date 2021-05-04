@@ -1,8 +1,41 @@
 ﻿@page "/lotterypage"
 @using BlazorTry.ViewModels
-@inject LotteryPageViewModel ViewModel
+@inject LotteryPageViewModel viewModel
 
-<h3>LotteryPage</h3>
+<h3>ランダムで一人抽選するよ</h3>
 
-<p>@ViewModel.Name.Value</p>
-@*<button class="btn btn-primary" @onclick="ViewModel.Command" @bind->Click me</button>*@
+@if (viewModel.NameList == null) {
+    <p><em>Loading...</em></p>
+} else {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>抽選リスト</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var nameList in viewModel.NameList) {
+                <tr>
+                    <td>@nameList</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p><b>@viewModel.Name.Value</b></p>
+
+<p><button class="btn btn-primary" @onclick="()=>viewModel.Action.Execute()">抽選!!!</button></p>
+<p>
+    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute("夏狂乱")'>夏狂乱 追加</button>
+    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute("放浪軍師")'>放浪軍師 追加</button>
+    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute("漆原鎌足")'>漆原鎌足 追加</button>
+</p>
+<p>
+    <input @bind="addName" />
+    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute(addName)'>任意 追加</button>
+</p>
+
+@code{
+    private string addName;
+}
