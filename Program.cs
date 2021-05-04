@@ -1,3 +1,5 @@
+using BlazorTry.Models;
+using BlazorTry.ViewModels;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,10 @@ namespace BlazorTry {
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            var nameList = new List<string> { "‰Jƒ–èÎ“ø", "‹ãð—ÑŒç", "”’”TƒNƒƒ~", "Œ‹–Úƒ†ƒC", "Šª”T‚à‚È‚©" };
+            builder.Services.AddScoped(sp => new Lottery(nameList));
+            builder.Services.AddTransient<LotteryPageViewModel>();
 
             await builder.Build().RunAsync();
         }
