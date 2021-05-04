@@ -11,6 +11,8 @@ namespace BlazorTry.ViewModels {
         public ReactiveCommand<string> AddParam { get; }
         public ReadOnlyReactiveCollection<string> NameList { get; }
 
+        public ReactiveProperty<string> AddName { get; } = new ReactiveProperty<string>();
+
         public LotteryPageViewModel(Lottery lottery) {
             Name = lottery.ObserveProperty(x => x.Name).ToReadOnlyReactivePropertySlim();
             NameList = lottery.NameList.ToReadOnlyReactiveCollection();

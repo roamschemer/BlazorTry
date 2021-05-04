@@ -32,10 +32,6 @@
     <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute("漆原鎌足")'>漆原鎌足 追加</button>
 </p>
 <p>
-    <input @bind="addName" />
-    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute(addName)'>任意 追加</button>
+    <input @bind="@viewModel.AddName.Value" />
+    <button class="btn btn-primary" @onclick='()=>viewModel.AddParam.Execute(viewModel.AddName.Value)'>任意 追加</button>
 </p>
-
-@code{
-    private string addName;
-}
